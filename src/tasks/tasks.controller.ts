@@ -4,6 +4,7 @@ import { TasksService } from './tasks.service';
 import { ETaskStatus, ITask } from './task.model';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { GetTasksFilterDto } from './dto/get-tasks-filter.dto';
+import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
 
 @Controller('tasks')
 export class TasksController {
@@ -38,8 +39,9 @@ export class TasksController {
   @Patch('/:taskId/status')
   updateTaskStatus(
     @Param('taskId') taskId: string,
-    @Body('status') status: ETaskStatus,
+    @Body() updateTaskStatusDto: UpdateTaskStatusDto,
   ): ITask {
+    const { status } = updateTaskStatusDto;
     return this.tasksService.updateTaskStatus(taskId, status);
   }
 }
