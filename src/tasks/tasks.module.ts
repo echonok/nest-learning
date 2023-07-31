@@ -3,13 +3,17 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { TasksController } from './tasks.controller';
 import { TasksService } from './tasks.service';
-import { TaskRepository } from './task.repository';
+import { TasksRepository } from './tasks.repository';
 import { Task } from './task.entity';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Task])],
+  imports: [
+    AuthModule,
+    TypeOrmModule.forFeature([Task])
+  ],
   controllers: [TasksController],
-  providers: [TasksService, TaskRepository]
+  providers: [TasksService, TasksRepository]
 })
 export class TasksModule {
 }
