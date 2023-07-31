@@ -8,7 +8,7 @@ import { ConflictException, InternalServerErrorException, UnauthorizedException 
 import { JwtService } from '@nestjs/jwt';
 import { IJwtPayload } from './jwt-payload.interface';
 
-const asd = '23505';
+const duplicateCode = '23505';
 
 @CustomRepository(User)
 export class UsersRepository extends Repository<User> {
@@ -29,7 +29,7 @@ export class UsersRepository extends Repository<User> {
     try {
       await this.save(user);
     } catch (e) {
-      if (e.code = '23505') { // duplicate username
+      if (e.code === duplicateCode) { // duplicate username
         throw new ConflictException('Username already exists');
       } else {
         throw new InternalServerErrorException();
