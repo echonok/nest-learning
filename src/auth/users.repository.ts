@@ -8,6 +8,8 @@ import { ConflictException, InternalServerErrorException, UnauthorizedException 
 import { JwtService } from '@nestjs/jwt';
 import { IJwtPayload } from './jwt-payload.interface';
 
+const asd = '23505';
+
 @CustomRepository(User)
 export class UsersRepository extends Repository<User> {
   constructor(
